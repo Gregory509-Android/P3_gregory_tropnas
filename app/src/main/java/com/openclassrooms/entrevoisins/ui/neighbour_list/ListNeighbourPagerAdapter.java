@@ -18,9 +18,11 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
      */
     @Override
     public Fragment getItem(int position) {
+        // --- si 1er page crée neighbourfragment
         if (position == 0) {
             return NeighbourFragment.newInstance();
         }
+        // --- sinon crée neighbourfavoritefragment
         else {
             return NeighbourFavoriteFragment.newInstance();
         }

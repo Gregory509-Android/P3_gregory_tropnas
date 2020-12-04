@@ -56,25 +56,20 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         mFloatfavoris = findViewById(R.id.activity_details_neighbour_float_favoris);
         mApiService = DI.getNeighbourApiService();
 
-
-
+        // --- récupération de l'intent
         Intent i = getIntent();
-        String name = i.getStringExtra("name");
-        String url = i.getStringExtra("url");
-        String address = i.getStringExtra("address");
-        String aboutme = i.getStringExtra("aboutme");
-        String phonenumber = i.getStringExtra("phonenumber");
+        // --- récupération de l'extra contenant l'objet neighbour
         Neighbour neighbour = (Neighbour) i.getSerializableExtra("neighbour");
 
-        mTxtName.setText(name);
-        mTxtfacebook.setText("http://www.facebook.com/" + name);
-        mTxtName2.setText(name);
-        mTxtadresse.setText(address);
-        mTxtapropos.setText(aboutme);
-        mTxtnumber.setText(phonenumber);
+        mTxtName.setText(neighbour.getName());
+        mTxtfacebook.setText("http://www.facebook.com/" + neighbour.getName());
+        mTxtName2.setText(neighbour.getName());
+        mTxtadresse.setText(neighbour.getAddress());
+        mTxtapropos.setText(neighbour.getAboutMe());
+        mTxtnumber.setText(neighbour.getPhoneNumber());
 
         Glide.with(this)
-                .load(url)
+                .load(neighbour.getAvatarUrl())
                 .into(mBackground);
 
         mImgArrow.setOnClickListener(new View.OnClickListener() {
@@ -85,10 +80,13 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
             }
         });
 
+        // --- l'étal initial dE l'étoile
+        // --- si la liste favoris contient neighbour
         if (mApiService.getNeighboursFavorite().contains(neighbour)) {
             mFloatfavoris.setColorFilter(Color.YELLOW);
             mFloatfavoris.setSelected(true);
         }
+        // --- sinon
         else {
             mFloatfavoris.setColorFilter(Color.BLACK);
             mFloatfavoris.setSelected(false);
@@ -98,12 +96,14 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // --- si neighbour est en favoris
                 if (mFloatfavoris.isSelected()) {
                     mFloatfavoris.setColorFilter(Color.BLACK);
                     mFloatfavoris.setSelected(false);
                     mApiService.deleteNeighbourFavorite(neighbour);
 
                 }
+                // --- sinon
                 else {
                     mFloatfavoris.setColorFilter(Color.YELLOW);
                     mFloatfavoris.setSelected(true);

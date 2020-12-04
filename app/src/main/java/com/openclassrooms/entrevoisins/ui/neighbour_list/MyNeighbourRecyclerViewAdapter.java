@@ -60,24 +60,17 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             }
         });
 
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // --- création de l'intent
                 Intent i = new Intent(v.getContext(), DetailsNeighbourActivity.class);
-                i.putExtra("name", neighbour.getName());
-                i.putExtra("url", neighbour.getAvatarUrl());
-                i.putExtra("previous",neighbour.getId());
-                i.putExtra("address", neighbour.getAddress());
-                i.putExtra("aboutme", neighbour.getAboutMe());
-                i.putExtra("phonenumber", neighbour.getPhoneNumber());
+                // --- ajout de l'objet neighbour a l'intent via l'extra
                 i.putExtra("neighbour",neighbour);
+                // --- lancement de l'activité
                 v.getContext().startActivity(i);
             }
         });
-
-
-
     }
 
     @Override
