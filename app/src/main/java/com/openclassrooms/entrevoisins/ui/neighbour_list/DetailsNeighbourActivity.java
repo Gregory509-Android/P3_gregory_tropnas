@@ -82,7 +82,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 
         // --- l'étal initial dE l'étoile
         // --- si la liste favoris contient neighbour
-        if (mApiService.getNeighboursFavorite().contains(neighbour)) {
+        if (neighbour.isFavorite()) {
             mFloatfavoris.setColorFilter(Color.YELLOW);
             mFloatfavoris.setSelected(true);
         }
@@ -95,20 +95,16 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         mFloatfavoris.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mApiService.updateFavoriteNeighbour(neighbour);
                 // --- si neighbour est en favoris
                 if (mFloatfavoris.isSelected()) {
                     mFloatfavoris.setColorFilter(Color.BLACK);
                     mFloatfavoris.setSelected(false);
-                    mApiService.deleteNeighbourFavorite(neighbour);
-
                 }
                 // --- sinon
                 else {
                     mFloatfavoris.setColorFilter(Color.YELLOW);
                     mFloatfavoris.setSelected(true);
-                    mApiService.createNeighbourFavorite(neighbour);
-
                 }
             }
         });

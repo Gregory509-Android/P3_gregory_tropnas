@@ -59,7 +59,7 @@ public class NeighbourFavoriteFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighboursFavorite();
+        mNeighbours = mApiService.getFavoriteNeighbours();
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
@@ -87,7 +87,7 @@ public class NeighbourFavoriteFragment extends Fragment {
      */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        mApiService.deleteNeighbourFavorite(event.neighbour);
+        mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
 }
