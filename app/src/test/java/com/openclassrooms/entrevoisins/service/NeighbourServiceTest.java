@@ -54,26 +54,30 @@ public class NeighbourServiceTest {
     }
 
     @Test
-    public void getNeighbourFavorite() {
-        List<Neighbour> neighbourList = service.getNeighboursFavorite();
-        List<Neighbour> expectedNeighbours = new ArrayList<>();
-        assertThat(neighbourList, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
-    }
-    @Test
-    public void deleteNeighbourFavoriteWithSuccess() {
-        service.createNeighbourFavorite(new Neighbour());
-        Neighbour neighbourFavoriteToDelete = service.getNeighboursFavorite().get(0);
-        service.deleteNeighbourFavorite(neighbourFavoriteToDelete);
-        assertFalse(service.getNeighboursFavorite().contains(neighbourFavoriteToDelete));
+    public void getFavoriteNeighboursWithSuccess() {
+        // intialemment la methode ci-dessous renvoie a une liste vide
+        List<Neighbour> neighbourList = service.getFavoriteNeighbours();
+        assertEquals(0, neighbourList.size());
+
+        // ajout en favoris du 1er utilisateur de la liste
+        Neighbour neighbour = service.getNeighbours().get(0);
+        service.updateFavoriteNeighbour(neighbour);
+
+        // la liste des favoris contient maintenant un neighbour
+        neighbourList = service.getFavoriteNeighbours();
+        assertEquals(1, neighbourList.size());
     }
 
     @Test
-    public void createNeighboursFavoriteWithSuccess() {
-        List<Neighbour> neighbours = service.getNeighboursFavorite();
-        service.createNeighbourFavorite(new Neighbour());
-        assertEquals (1,neighbours.size());
-    }
+    public void updateNeighboursWithSuccess() {
+        Neighbour neighbour = service.getNeighbours().get(0);
+        assertEquals(false, neighbour.isFavorite());
+        service.updateFavoriteNeighbour(neighbour);
+        assertEquals(true, neighbour.isFavorite());
+        service.updateFavoriteNeighbour(neighbour);
+        assertEquals(false, neighbour.isFavorite());
 
+    }
 
 }
 

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/activity_details_neighbour_rela_picture"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="230dp"
         android:background="@color/colorPrimaryDark">
         <ImageView
             android:id="@+id/activity_details_neighbour_img_background"
@@ -17,14 +17,6 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
 
-        <ImageView
-            android:id="@+id/activity_details_neighbour_img_arrow"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/ic_arrow_left"
-            android:tint="@color/white" />
         <TextView
             android:id="@+id/activity_details_neighbour_txt_name"
             android:layout_width="wrap_content"
@@ -32,7 +24,7 @@
             android:text="Caroline"
             android:textSize="34sp"
             android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
+            android:layout_margin="16dp"
             android:textColor="@color/white" />
     </RelativeLayout>
 
@@ -42,8 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/activity_details_neighbour_rela_picture"
-        android:layout_margin="20dp"
-        android:padding="85dp"
+        android:layout_margin="16dp"
+        android:padding="88dp"
         android:background="@color/colorPrimaryDark"
         app:cardCornerRadius="10dp">
 
@@ -58,7 +50,7 @@
                 android:text="Caroline"
                 android:textSize="22dp"
                 android:textColor="@color/black"
-                android:layout_margin="10dp" />
+                android:layout_margin="8dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -70,22 +62,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Saint pierre du mont 5km"
-                android:layout_margin="10dp"
+                android:layout_margin="8dp"
                 android:gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_map_marker"
-                android:drawablePadding="10dp"
+                android:drawablePadding="8dp"
                 android:drawableTint="@color/pink"/>
-
 
             <TextView
                 android:id="@+id/activity_details_neighbour_txt_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="06 27 86 95 93"
-                android:layout_margin="10dp"
+                android:layout_margin="8dp"
                 android:gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_phone"
-                android:drawablePadding="10dp"
+                android:drawablePadding="8dp"
                 android:drawableTint="@color/pink"/>
 
             <TextView
@@ -93,14 +84,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="www.facebook.fr/nsemi"
-                android:layout_margin="10dp"
+                android:layout_margin="8dp"
                 android:gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_web"
-                android:drawablePadding="10dp"
+                android:drawablePadding="8dp"
                 android:drawableTint="@color/pink"/>
-
-
-
 
         </LinearLayout>
 
@@ -112,15 +100,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/activity_details_neighbour_card_contact"
-        android:layout_margin="20dp"
-        android:padding="65dp"
+        android:layout_margin="16dp"
+        android:padding="64dp"
         android:background="@color/colorPrimaryDark"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="8dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -128,19 +115,19 @@
                 android:text="A propos de moi"
                 android:textSize="22dp"
                 android:textColor="@color/black"
-                android:layout_margin="10dp" />
+                android:layout_margin="8dp" />
 
             <View
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#D3D3D3	" />
+                android:background="#D3D3D3"/>
 
             <TextView
                 android:id="@+id/activity_details_neighbour_txt_apropos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Bonjour! Je souhaiterais faire de la marche nordique.Pas initiée, je recherche une ou plusieurs personnes sucesptible de m'accompagner! J'aime les jeux de cartes tels que la belotte et le tarot...  "
-                android:layout_margin="10dp"/>
+                android:layout_margin="8dp"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -154,8 +141,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/activity_details_neighbour_rela_picture"
         android:layout_marginTop="-24dp" />
-
-
 
 
 </RelativeLayout>

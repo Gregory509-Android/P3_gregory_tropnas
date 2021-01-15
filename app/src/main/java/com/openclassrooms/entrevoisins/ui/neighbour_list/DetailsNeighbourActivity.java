@@ -23,7 +23,6 @@ import java.util.List;
 
 public class DetailsNeighbourActivity extends AppCompatActivity {
 
-    private ImageView mImgArrow;
     private RelativeLayout mRelaPicture;
     private TextView mTxtName;
     private CardView mCardcontact;
@@ -43,7 +42,6 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_neighbour);
         mBackground = findViewById(R.id.activity_details_neighbour_img_background);
-        mImgArrow = findViewById(R.id.activity_details_neighbour_img_arrow);
         mRelaPicture = findViewById(R.id.activity_details_neighbour_rela_picture);
         mTxtName = findViewById(R.id.activity_details_neighbour_txt_name);
         mCardcontact = findViewById(R.id.activity_details_neighbour_card_contact);
@@ -71,14 +69,6 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(neighbour.getAvatarUrl())
                 .into(mBackground);
-
-        mImgArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-
-            }
-        });
 
         // --- l'étal initial dE l'étoile
         // --- si la liste favoris contient neighbour

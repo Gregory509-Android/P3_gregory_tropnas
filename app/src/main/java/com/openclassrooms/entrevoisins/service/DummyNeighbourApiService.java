@@ -50,6 +50,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
 
     @Override
     public void updateFavoriteNeighbour(Neighbour neighbour) {
+        // inverser l'état favoris d'un neighbour
         neighbour.setFavorite(!neighbour.isFavorite());
         neighbours.set(neighbours.indexOf(neighbour), neighbour);
     }

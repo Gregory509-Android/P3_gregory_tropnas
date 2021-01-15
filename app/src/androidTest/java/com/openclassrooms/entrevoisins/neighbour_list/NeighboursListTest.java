@@ -26,10 +26,13 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -68,7 +71,7 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_shouldNotBeEmpty() {
         // First scroll to the position that needs to be matched and click on it.
-        onView(ViewMatchers.withId(R.id.list_neighbours))
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours)))
                 .check(matches(hasMinimumChildCount(1)));
     }
 
@@ -78,37 +81,46 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
         // Given : We remove the element at position 2
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours))).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
-        onView(ViewMatchers.withId(R.id.list_neighbours))
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours)))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
+        ITEMS_COUNT = ITEMS_COUNT-1;
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours))).check(withItemCount(ITEMS_COUNT));
 
     }
 
     @Test
     public void checkIfFavoriteRecyclerViewIsEmpty() {
-        onView(ViewMatchers.withId(R.id.list_neighbours_favorite)).check(new RecyclerViewUtils.ItemCount(0));
+        onView(withId(R.id.container)).perform(swipeLeft());
+
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours))).check(new RecyclerViewUtils.ItemCount(0));
     }
 
     @Test
     public void listNeighbourActivityTest() {
-        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(actionOnItemAtPosition(0, click()));
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours))).perform(actionOnItemAtPosition(0, click()));
 
         onView(ViewMatchers.withId(R.id.activity_details_neighbour_float_favoris)).perform(click());
 
         pressBack();
 
-        onView(ViewMatchers.withId(R.id.list_neighbours_favorite)).check(new RecyclerViewUtils.ItemCount(1));
+        onView(withId(R.id.container)).perform(swipeLeft());
 
-        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(actionOnItemAtPosition(0, click()));
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours))).check(new RecyclerViewUtils.ItemCount(1));
+
+        onView(withId(R.id.container)).perform(swipeRight());
+
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours))).perform(actionOnItemAtPosition(0, click()));
 
         onView(ViewMatchers.withId(R.id.activity_details_neighbour_float_favoris)).perform(click());
 
         pressBack();
 
-        onView(ViewMatchers.withId(R.id.list_neighbours_favorite)).check(new RecyclerViewUtils.ItemCount(0));
+        onView(withId(R.id.container)).perform(swipeLeft());
+
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours))).check(new RecyclerViewUtils.ItemCount(0));
     }
 
     private static Matcher<View> childAtPosition(
